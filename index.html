@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tayi Sai Sri Harshitha — Software Engineer focused on AI, GenAI, RAG, backend systems and full-stack development." />
+  <title>Harshitha Tayi | Software Engineer · AI & Backend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0d; --surface:#121216; --text:#f7f7f5; --muted:#a9a9b0;
+      --line:rgba(255,255,255,.11); --accent:#ff4d5a; --accent2:#ff8b94;
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .cursor-dot,.cursor-ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);border-radius:50%}
+    .cursor-dot{width:7px;height:7px;background:#fff;mix-blend-mode:difference}
+    .cursor-ring{width:34px;height:34px;border:1px solid rgba(255,255,255,.55);transition:width .2s,height .2s,border-color .2s;mix-blend-mode:difference}
+    body.hover .cursor-ring{width:55px;height:55px;border-color:#fff}
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:100;width:min(92%,720px);display:flex;justify-content:center;gap:8px;padding:8px;border:1px solid var(--line);background:rgba(18,18,22,.64);backdrop-filter:blur(20px);border-radius:999px}
+    .nav a{padding:9px 15px;border-radius:999px;color:#ddd;font-size:13px}
+    .nav a:hover{background:#fff;color:#111}
+    .hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 70% 45%,rgba(255,77,90,.18),transparent 30%),var(--bg)}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(to bottom,black,transparent)}
+    .hero-copy{position:absolute;left:7vw;bottom:10vh;max-width:570px;z-index:3}
+    .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+    h1{font-size:clamp(54px,8vw,112px);line-height:.9;letter-spacing:-.055em}
+    h1 em{font-family:"Playfair Display",serif;font-weight:500;color:var(--accent);display:block}
+    .hero-copy p{margin-top:25px;color:#c7c7cc;max-width:470px;font-size:17px}
+    .actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 18px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#111;font-weight:600;font-size:14px}
+    .btn.ghost{background:rgba(255,255,255,.05);color:#fff}
+    section{padding:120px 7vw;max-width:var(--max);margin:auto}
+    .section-label{font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);margin-bottom:14px}
+    h2{font-size:clamp(38px,5vw,68px);line-height:1.02;letter-spacing:-.045em;margin-bottom:35px}
+    .lead{font-size:20px;color:#c8c8ce;max-width:800px}
+    .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .fact{padding:22px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025)}
+    .fact b{display:block;font-size:14px;margin-bottom:5px}.fact span{color:var(--muted);font-size:13px}
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .chip{border:1px solid var(--line);padding:9px 13px;border-radius:999px;color:#ddd;background:#101014;font-size:13px}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{padding:30px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#15151a,#0e0e11);min-height:300px;display:flex;flex-direction:column}
+    .card .num{font-size:12px;color:var(--accent);margin-bottom:50px}.card h3{font-size:29px;margin-bottom:12px}.card p{color:var(--muted);font-size:15px}.stack{margin-top:auto;padding-top:25px;color:#ddd;font-size:12px}
+    .timeline{border-left:1px solid var(--line);margin-left:8px;padding-left:28px;display:grid;gap:40px}
+    .timeline-item{position:relative}.timeline-item:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--accent);left:-33px;top:8px;box-shadow:0 0 0 6px var(--bg)}
+    .timeline small{color:var(--accent)}.timeline h3{margin:5px 0}.timeline p{color:var(--muted)}
+    .contact{min-height:70vh;display:flex;flex-direction:column;justify-content:center}
+    .contact h2{max-width:850px}.contact a.big{font-size:clamp(30px,6vw,78px);font-family:"Playfair Display",serif;font-style:italic;border-bottom:1px solid var(--line);display:inline-block}
+    footer{padding:35px 7vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+
+    /* ===== AI CHARACTER — INTEGRATED STICKER / RESPONSIVE ===== */
+    .character-stage{
+      width:min(39vw,500px);
+      height:min(68vh,610px);
+      position:absolute;
+      right:5vw;
+      top:52%;
+      transform:translateY(-50%);
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .character-glow{
+      position:absolute;
+      width:72%;
+      height:72%;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(255,77,90,.18),rgba(255,77,90,.06) 45%,transparent 72%);
+      filter:blur(36px);
+      transition:transform .25s ease;
+    }
+    .hero-character{
+      position:relative;
+      width:94%;
+      height:94%;
+      object-fit:contain;
+      object-position:center center;
+      transform:translate3d(0,0,0) rotate(0deg) scale(1);
+      filter:drop-shadow(0 24px 34px rgba(255,77,90,.16));
+      -webkit-mask-image:radial-gradient(ellipse 48% 50% at 52% 50%,#000 94%,transparent 100%);
+      mask-image:radial-gradient(ellipse 48% 50% at 52% 50%,#000 94%,transparent 100%);
+      transition:filter .25s ease;
+      will-change:transform;
+    }
+    .hero-bubble{
+      position:absolute;
+      right:0;
+      top:8%;
+      max-width:185px;
+      padding:11px 14px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:17px 17px 4px 17px;
+      background:rgba(10,10,14,.72);
+      backdrop-filter:blur(16px);
+      color:#eee;
+      font-size:12px;
+      opacity:0;
+      transform:translateY(8px) scale(.97);
+      transition:.3s ease;
+    }
+    .character-stage.active .hero-bubble{
+      opacity:1;
+      transform:none;
+    }
+    .cursor-target{
+      position:absolute;
+      width:9px;
+      height:9px;
+      border:1px solid rgba(255,255,255,.72);
+      border-radius:50%;
+      box-shadow:0 0 0 7px rgba(255,77,90,.07);
+      transition:left .08s linear,top .08s linear;
+    }
+
+    /* ===== CONTEXTUAL CORNER COMPANION ===== */
+    .scroll-companion{
+      position:fixed;
+      right:16px;
+      bottom:8px;
+      width:150px;
+      height:185px;
+      z-index:500;
+      pointer-events:none;
+      opacity:0;
+      transform:translateY(24px) scale(.94);
+      transition:opacity .35s ease,transform .35s ease;
+    }
+    .scroll-companion.visible{
+      opacity:1;
+      transform:none;
+    }
+    .scroll-companion img{
+      position:absolute;
+      z-index:1;
+      right:-10px;
+      bottom:-8px;
+      width:175px;
+      height:185px;
+      object-fit:contain;
+      object-position:center bottom;
+      filter:drop-shadow(0 12px 22px rgba(255,77,90,.18));
+      -webkit-mask-image:radial-gradient(ellipse 48% 50% at 52% 50%,#000 94%,transparent 100%);
+      mask-image:radial-gradient(ellipse 48% 50% at 52% 50%,#000 94%,transparent 100%);
+      transform-origin:bottom center;
+      will-change:transform;
+    }
+    .companion-bubble{
+      position:absolute;
+      right:150px;
+      top:-8px;
+      z-index:2;
+      max-width:190px;
+      min-width:145px;
+      padding:10px 13px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:15px 15px 3px 15px;
+      background:rgba(10,10,14,.9);
+      backdrop-filter:blur(13px);
+      font-size:11px;
+      line-height:1.45;
+      color:#eee;
+      opacity:0;
+      transform:translateY(6px);
+      transition:.28s ease;
+    }
+    .scroll-companion.paused .companion-bubble{
+      opacity:1;
+      transform:none;
+    }
+    .scroll-companion.scrolling img{
+      animation:happyBounce .55s ease-in-out infinite alternate;
+    }
+    .scroll-companion.paused img{
+      animation:thinking 2s ease-in-out infinite;
+    }
+    @keyframes thinking{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(3deg) translateY(-5px)}}
+    @keyframes happyBounce{from{transform:translateY(0) rotate(-1deg)}to{transform:translateY(-6px) rotate(1deg)}}
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
+
+    @media(max-width:800px){
+      .cursor-dot,.cursor-ring{display:none}
+      .nav{top:10px;width:94%;gap:2px;padding:6px;overflow-x:auto;justify-content:flex-start;white-space:nowrap}
+      .nav a{padding:8px 10px;font-size:10px;flex:0 0 auto}
+      .hero{min-height:auto;padding:105px 7vw 62px;display:flex;flex-direction:column;justify-content:flex-start}
+      .hero-grid{background-size:45px 45px}
+      .character-stage{position:relative;right:auto;top:auto;transform:none;width:100%;height:76vw;min-height:290px;max-height:410px;order:0;margin:0 auto -2px}
+      .hero-character{width:92%;height:92%;object-position:center center;}
+      .hero-bubble{right:1%;top:5%;font-size:10px;max-width:150px}
+      .hero-copy{position:relative;left:auto;bottom:auto;order:1;margin-top:-5px;max-width:none}
+      h1{font-size:clamp(52px,15vw,78px)}
+      .hero-copy p{font-size:15px;max-width:100%}
+      .actions{margin-top:22px}
+      section{padding:82px 7vw}
+      .about-grid,.projects{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}
+      .scroll-companion{width:118px;height:138px;right:4px;bottom:4px}
+      .scroll-companion img{width:138px;height:145px;right:-8px;bottom:-5px}
+      .companion-bubble{right:112px;top:-4px;max-width:145px;min-width:112px;font-size:9px;padding:8px 10px}
+      footer{flex-direction:column;gap:8px}
+    }
+    @media(max-width:430px){
+      .nav a{font-size:9px;padding:7px 8px}
+      .character-stage{height:86vw;min-height:270px}
+      .hero-character{width:94%;height:94%}
+      .facts{grid-template-columns:1fr}
+      .scroll-companion{width:110px;height:132px}
+      .scroll-companion img{width:132px;height:140px}
+    }
+  </style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+
+<nav class="nav">
+  <a href="#work">WORK</a><a href="#about">ABOUT</a><a href="#experience">EXPERIENCE</a><a href="#contact">CONTACT</a>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="character-stage" id="characterStage">
+    <div class="character-glow"></div>
+    <div class="cursor-target" id="cursorTarget"></div>
+    <img class="hero-character" id="heroCharacter"
+         src="assets/ai-girl-clean.png"
+         alt="3D AI portfolio character">
+    <div class="hero-bubble" id="heroBubble">Nice to meet you 👋</div>
+  </div>
+  <div class="hero-copy">
+    <div class="eyebrow">Software Engineer · AI · Backend · Full Stack</div>
+    <h1>Hi, I'm <em>Harshitha.</em></h1>
+    <p>I build practical AI-powered products, backend services and interactive web experiences — with a focus on GenAI, RAG, agentic systems and clean engineering.</p>
+    <div class="actions">
+      <a class="btn magnetic" href="#work">Explore my work ↗</a>
+      <a class="btn ghost magnetic" href="#contact">Let's talk</a>
+    </div>
+  </div>
+</header>
+
+<div class="scroll-companion" id="scrollCompanion">
+  <div class="companion-bubble" id="companionBubble">Curious about my work? 👀</div>
+  <img src="assets/ai-girl-clean.png" alt="AI portfolio companion">
+</div>
+<main>
+<section id="about">
+  <div class="section-label">01 / About</div>
+  <div class="about-grid">
+    <div>
+      <h2>Engineering with an AI-first mindset.</h2>
+      <p class="lead">Software Engineer at LTIMindtree, working across AI agents, distributed/backend systems and GenAI solutions. I enjoy turning real-world problems into simple, usable products.</p>
+      <div class="skills">
+        <span class="chip">Python</span><span class="chip">Java</span><span class="chip">FastAPI</span><span class="chip">Spring Boot</span>
+        <span class="chip">LangChain</span><span class="chip">RAG</span><span class="chip">Agentic AI</span><span class="chip">LLMs</span>
+        <span class="chip">MongoDB</span><span class="chip">SQL</span><span class="chip">Angular</span><span class="chip">Git/Jenkins</span>
+      </div>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>Current</b><span>Software Engineer · LTIMindtree</span></div>
+      <div class="fact"><b>Focus</b><span>AI Agents & Distributed Systems</span></div>
+      <div class="fact"><b>Education</b><span>B.Tech · CSE (Data Science)</span></div>
+      <div class="fact"><b>Based in</b><span>India · Open to Bengaluru / Hyderabad / Remote</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-label">02 / Selected work</div>
+  <h2>Projects that solve something.</h2>
+  <div class="projects">
+    <article class="card"><div class="num">01 — AI / GENAI</div><h3>FinSight</h3><p>AI-powered financial insights platform with budgeting, investment and conversational agents. Built around FastAPI, MongoDB, LangChain and Google Gemini.</p><div class="stack">Python · FastAPI · MongoDB · LangChain · Gemini · Streamlit · RAG</div></article>
+    <article class="card"><div class="num">02 — FULL STACK</div><h3>BookHeaven</h3><p>Digital book rental application with authentication, role-based access and REST APIs, designed as a practical full-stack system.</p><div class="stack">Java · Spring Boot · Angular · REST · MongoDB</div></article>
+    <article class="card"><div class="num">03 — AI PRODUCT</div><h3>CareerPilot</h3><p>Career guidance platform concept covering resume analysis, ATS evaluation, skills-gap insights, interview preparation and a career chatbot.</p><div class="stack">Python · FastAPI · MongoDB · NLP · RAG · LLMs</div></article>
+    <article class="card"><div class="num">04 — DATA / WEB</div><h3>Healthcare & Wellbeing</h3><p>Full-stack academic project designed to connect users with healthcare and wellbeing workflows through a web application.</p><div class="stack">MERN · JavaScript · MongoDB · React</div></article>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">03 / Experience</div>
+  <h2>Where I've been building.</h2>
+  <div class="timeline">
+    <div class="timeline-item"><small>2025 — PRESENT</small><h3>Software Engineer · LTIMindtree</h3><p>Working in BFS / Architecture Lab on AI-agent and backend-oriented solutions, with exposure to GenAI, RAG, FastAPI, MongoDB, Python and engineering workflows.</p></div>
+    <div class="timeline-item"><small>2025</small><h3>Engineering Training · Java → Spring Boot → Angular</h3><p>Hands-on training covering JDBC, collections, Java development, Spring Boot, REST APIs and Angular.</p></div>
+    <div class="timeline-item"><small>2025</small><h3>B.Tech · Computer Science & Engineering (Data Science)</h3><p>Built academic projects across full-stack development, data and software engineering.</p></div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="section-label">04 / What I work with</div>
+  <h2>From APIs to AI agents.</h2>
+  <p class="lead">Backend engineering, REST APIs, data stores, retrieval pipelines, prompt engineering, LLM applications and interactive frontends.</p>
+  <div class="skills">
+    <span class="chip">REST APIs</span><span class="chip">Microservices</span><span class="chip">RAG pipelines</span><span class="chip">Embeddings</span>
+    <span class="chip">Semantic retrieval</span><span class="chip">Prompt Engineering</span><span class="chip">AI Agents</span><span class="chip">Jenkins</span>
+    <span class="chip">GitHub Copilot</span><span class="chip">AWS</span><span class="chip">Agentic AI</span><span class="chip">LangChain</span>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-label">05 / Contact</div>
+  <h2>Have a product, AI idea, or opportunity?</h2>
+  <p class="lead">I'm open to software engineering, AI/GenAI and backend opportunities.</p>
+  <!-- Replace the email below with your real email before publishing. -->
+  <a class="big magnetic" href="mailto:YOUR_EMAIL@example.com">tayiharshitha@gmail.com ↗</a>
+</section>
+</main>
+
+<footer><span>© 2026 Harshitha Tayi</span><span>Built with HTML · CSS · JavaScript</span></footer>
+
+<script>
+  const dot=document.querySelector('.cursor-dot');
+  const ring=document.querySelector('.cursor-ring');
+  const stage=document.querySelector('#characterStage');
+  const character=document.querySelector('#heroCharacter');
+  const glow=document.querySelector('.character-glow');
+  const target=document.querySelector('#cursorTarget');
+  const companion=document.querySelector('#scrollCompanion');
+  const companionImg=companion.querySelector('img');
+  const companionBubble=document.querySelector('#companionBubble');
+  const heroBubble=document.querySelector('#heroBubble');
+
+  let mouseX=innerWidth/2, mouseY=innerHeight/2;
+  let cursorX=mouseX, cursorY=mouseY;
+  let scrollStopTimer;
+  let pauseTimer;
+  let currentSection='home';
+  let companionVisible=false;
+
+  /* Messages are tied to the section currently visible. Nothing cycles randomly. */
+  const sectionMessages={
+    home:'Hi 👋 Take a look around.',
+    about:'Curious about my skills? You’re in the right place. 👀',
+    work:'These are the projects I’ve built.',
+    experience:'Here’s my engineering journey so far.',
+    tools:'These are the tools I use to build.',
+    contact:'Have an idea or opportunity? Let’s talk. ✨'
+  };
+
+  function setCompanionMessage(message){
+    companionBubble.textContent=message;
+  }
+
+  function setSection(section){
+    currentSection=section || 'home';
+    setCompanionMessage(sectionMessages[currentSection] || sectionMessages.home);
+
+    if(currentSection==='home'){
+      companion.classList.remove('visible','scrolling','paused');
+      companionVisible=false;
+    }else if(window.scrollY>140){
+      companion.classList.add('visible');
+      companionVisible=true;
+    }
+  }
+
+  setCompanionMessage(sectionMessages.home);
+
+  /* Detect the section actually visible on screen. */
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        setSection(entry.target.id || 'home');
+      }
+    });
+  },{threshold:0.32,rootMargin:'-12% 0px -28% 0px'});
+
+  document.querySelectorAll('header.hero, main > section').forEach(el=>observer.observe(el));
+
+  /* Hero character follows the cursor subtly. */
+  window.addEventListener('mousemove',event=>{
+    mouseX=event.clientX;
+    mouseY=event.clientY;
+
+    const underCursor=document.elementFromPoint(mouseX,mouseY);
+    const hoveredSection=underCursor && underCursor.closest('header.hero, main > section');
+    if(hoveredSection){
+      const id=hoveredSection.id || 'home';
+      if(id!==currentSection) setSection(id);
+    }
+
+    const rect=stage.getBoundingClientRect();
+    const dx=(mouseX-(rect.left+rect.width/2))/Math.max(rect.width,1);
+    const dy=(mouseY-(rect.top+rect.height/2))/Math.max(rect.height,1);
+
+    const moveX=Math.max(-10,Math.min(10,dx*26));
+    const moveY=Math.max(-7,Math.min(7,dy*18));
+    const rotation=Math.max(-1.4,Math.min(1.4,dx*2));
+
+    character.style.transform=`translate3d(${moveX}px,${moveY}px,0) rotate(${rotation}deg) scale(1.005)`;
+    glow.style.transform=`translate3d(${moveX*.25}px,${moveY*.25}px,0)`;
+    target.style.left=(50+dx*38)+'%';
+    target.style.top=(50+dy*38)+'%';
+
+    /* Only react after the pointer actually pauses. */
+    clearTimeout(pauseTimer);
+    stage.classList.remove('active');
+    companion.classList.remove('paused');
+
+    pauseTimer=setTimeout(()=>{
+      if(currentSection==='home'){
+        heroBubble.textContent=sectionMessages.home;
+        stage.classList.add('active');
+      }else if(window.scrollY>140){
+        setCompanionMessage(sectionMessages[currentSection] || sectionMessages.home);
+        companion.classList.add('visible','paused');
+        companionVisible=true;
+      }
+    },1100);
+  },{passive:true});
+
+  /* Scrolling makes the corner companion move. Once scrolling stops, it pauses and reacts to the current section. */
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>140 && currentSection!=='home'){
+      companion.classList.add('visible','scrolling');
+      companion.classList.remove('paused');
+      companionVisible=true;
+      setCompanionMessage(sectionMessages[currentSection] || sectionMessages.home);
+    }else if(window.scrollY<=140){
+      companion.classList.remove('visible','scrolling','paused');
+      companionVisible=false;
+    }
+
+    clearTimeout(scrollStopTimer);
+    scrollStopTimer=setTimeout(()=>{
+      if(companionVisible && currentSection!=='home'){
+        companion.classList.remove('scrolling');
+        companion.classList.add('paused');
+        setCompanionMessage(sectionMessages[currentSection] || sectionMessages.home);
+      }
+    },700);
+  },{passive:true});
+
+  /* Smooth custom cursor + companion looks toward the pointer. */
+  function animateCursor(){
+    cursorX+=(mouseX-cursorX)*.18;
+    cursorY+=(mouseY-cursorY)*.18;
+    if(dot){dot.style.left=cursorX+'px';dot.style.top=cursorY+'px';}
+    if(ring){ring.style.left=cursorX+'px';ring.style.top=cursorY+'px';}
+
+    if(companionVisible){
+      const x=((mouseX/innerWidth)-.5)*12;
+      const y=((mouseY/innerHeight)-.5)*7;
+      companionImg.style.marginLeft=x+'px';
+      companionImg.style.marginBottom=y+'px';
+    }
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  /* Navigation hover immediately selects the matching context. */
+  const hoverMap={
+    '#about':'about','#work':'work','#experience':'experience','#contact':'contact'
+  };
+  Object.entries(hoverMap).forEach(([selector,key])=>{
+    document.querySelectorAll(selector).forEach(el=>{
+      el.addEventListener('mouseenter',()=>{
+        setSection(key);
+        if(window.scrollY>140){
+          companion.classList.add('visible','paused');
+          companionVisible=true;
+        }
+      });
+    });
+  });
+
+  document.querySelectorAll('a,.magnetic').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hover'));
+  });
+</script>
+</body>
+</html>
